@@ -14,9 +14,15 @@ Template.postSubmit.events({
 
         // show this result but route anyway
         if (result.postExists)
+<<<<<<< HEAD
         throwError('This link has already been posted');
 
       //Router.go('postPage', {_id: result._id});
+=======
+          alert('This link has already been posted');
+
+      Router.go('postPage', {_id: result._id});
+>>>>>>> ch8
     });
 
     Router.go('postsList');
