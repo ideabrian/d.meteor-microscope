@@ -10,7 +10,6 @@ Template.postEdit.events({
     };
 
     Posts.update(currentPostId, {$set: postProperties}, function(error) {
-      console.log(currentPostId, postProperties);
       if (error) {
         // display the error to the user
         throwError(error.reason);
