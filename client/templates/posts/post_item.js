@@ -8,4 +8,4 @@ Template.postItem.helpers({
     return a.hostname;
   }
 
-});
+})
