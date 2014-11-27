@@ -4,20 +4,27 @@ Template.postEdit.events({
 
     var currentPostId = this._id;
 
-    var postProperties = {
+    var post = {
       url: $(e.target).find('[name=url]').val(),
       title: $(e.target).find('[name=title]').val()
     };
 
-    Posts.update(currentPostId, {$set: postProperties}, function(error) {
-      if (error) {
+    var errors = validatePost(post);
+    if (errors.title || errors.url)
+      return Session.set('postEditErrors', errors);
+
+    Meteor.call('postUpdate', post, currentPostId, function(error, result){
+      if (error)
         // display the error to the user
-        throwError(error.reason);
-      } else {
-        Router.go('postPage', {_id: currentPostId});
-        }
-      });
+        return throwError(error.reason);
+
+      if (result.postExists)
+        throwError('This URL is already linked');
+    });
+
+      Router.go('postPage', {_id: currentPostId});
     },
+
 
   'click .delete': function(e) {
     e.preventDefault();
@@ -28,4 +35,17 @@ Template.postEdit.events({
       Router.go('postsList');
     }
   }
+});
+
+Template.postEdit.created = function() {
+Session.set('postEditErrors', {});
+};
+
+Template.postEdit.helpers({
+  errorMessage: function(field) {
+    return Session.get('postEditErrors')[field];
+},
+errorClass: function(field) {
+  return !!Session.get('postEditErrors')[field] ? 'has-error' : '';
+}
 });
