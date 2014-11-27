@@ -25,7 +25,6 @@ Template.postEdit.events({
       Router.go('postPage', {_id: currentPostId});
     },
 
-
   'click .delete': function(e) {
     e.preventDefault();
 
