@@ -1,4 +1,9 @@
 <template name="postPage">
   {{> postItem}}
-  {{log}}
+
+  <ul class="comments">
+    {{#each comments}}
+      {{> commentItem}}
+    {{/each}}
+  </ul>
 </template>
