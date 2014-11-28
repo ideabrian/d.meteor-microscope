@@ -21,5 +21,5 @@ Meteor.publish('newPosts', function(limit) {
 });
 
 Meteor.publish('bestPosts', function(limit) {
-  return Posts.find({}, {sort: {votes: -1, submitted}, limit: limit});
+  return Posts.find({}, {sort: {votes: -1, submitted: -1}, limit: limit});
 });
