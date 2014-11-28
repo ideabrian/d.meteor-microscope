@@ -1,7 +1,6 @@
 <template name="header">
   <div class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
-
       <div class="navbar-header">
           <button type="button" class="navbar-toggle collabsed" data-toggle="collpase" data-target="#navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -11,17 +10,16 @@
           </button>
           <a class="navbar-brand" href="{{pathFor 'home'}}">Hello</a>
       </div>
-
       <div class="collapse navbar-collapse" id="navigation">
         <ul class="nav navbar-nav">
-          <li>
+          <li class="{{activeRouteClass 'home' 'newPosts'}}">
             <a href="{{pathFor 'newPosts'}}">New</a>
           </li>
-          <li>
+          <li class="{{activeRouteClass 'bestPosts'}}">
             <a href="{{pathFor 'bestPosts'}}">Best</a>
           </li>
           {{#if currentUser}}
-            <li>
+            <li class="{{activeRouteClass 'postSubmit'}}">
               <a href="{{pathFor 'postSubmit'}}">Submit Post</a>
             </li>
             <li class="dropdown">
@@ -33,7 +31,6 @@
           {{> loginButtons}}
         </ul>
       </div>
-
     </div>
   </div>
 </template>
